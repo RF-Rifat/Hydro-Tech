@@ -39,7 +39,7 @@ export default function Home() {
     }
   };
 
-  const variants = {
+  const imageVariants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 1000 : -1000,
       opacity: 0,
@@ -54,22 +54,50 @@ export default function Home() {
     }),
   };
 
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        delay: 0.2,
+      },
+    },
+  };
+
   return (
     <>
       <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
         <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0 h-[70svh]">
           <div className="grid space-y-4 justify-around h-[30svh] lg:h-full">
-            <h1 className="h1-bold">
+            <motion.h1
+              className="h1-bold"
+              initial="hidden"
+              animate="visible"
+              variants={textVariants}
+            >
               Scan Your Plants for Diseases Instantly!
-            </h1>
-            <p className="p-regular-20 md:p-regular-24">
+            </motion.h1>
+            <motion.p
+              className="p-regular-20 md:p-regular-24"
+              initial="hidden"
+              animate="visible"
+              variants={textVariants}
+            >
               Upload an image of your plant and our advanced AI will detect any
               potential diseases, helping you keep your garden healthy and
               thriving.
-            </p>
-            <Button size="lg" asChild className="button w-full sm:w-fit">
-              <Link href="/scan">Start Scanning</Link>
-            </Button>
+            </motion.p>
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={textVariants}
+            >
+              <Button size="lg" asChild className="button w-full sm:w-fit">
+                <Link href="/scan">Start Scanning</Link>
+              </Button>
+            </motion.div>
           </div>
 
           <div className="relative overflow-hidden rounded-lg h-[40svh] lg:h-full mt-20 lg:mt-0">
@@ -77,7 +105,7 @@ export default function Home() {
               <motion.div
                 key={currentImage}
                 custom={currentImage}
-                variants={variants}
+                variants={imageVariants}
                 initial="enter"
                 animate="center"
                 exit="exit"
