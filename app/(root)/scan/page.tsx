@@ -26,7 +26,10 @@ const ScanPage = () => {
     <>
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center pt-5">
         <div className="wrapper flex items-center justify-center sm:justify-between">
-          <h3 className="h3-bold text-center sm:text-left">Select your plant diseases detection card: Choose your plant for Targeted Diagnosis!</h3>
+          <h3 className="h3-bold text-center sm:text-left">
+            Select your plant diseases detection card: Choose your plant for
+            Targeted Diagnosis!
+          </h3>
         </div>
         <div className="px-4 py-6 font-[sans-serif]">
           <div className="max-w-6xl mx-auto">
@@ -75,7 +78,7 @@ const ScanPage = () => {
                       className="relative inline-flex items-center justify-center p-2 px-4 py-1.5 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-green-500 rounded-full shadow-md group mt-2"
                     >
                       <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-green-500 group-hover:translate-x-0 ease">
-                        <svg
+                        {/* <svg
                           className="w-6 h-6"
                           fill="none"
                           stroke="currentColor"
@@ -88,7 +91,8 @@ const ScanPage = () => {
                             stroke-width="2"
                             d="M14 5l7 7m0 0l-7 7m7-7H3"
                           ></path>
-                        </svg>
+                        </svg> */}
+                        {post.title}
                       </span>
                       <span className="absolute flex items-center justify-center w-full h-full text-green-500 transition-all duration-300 transform group-hover:translate-x-full ease">
                         Click Here To Detect
@@ -97,7 +101,6 @@ const ScanPage = () => {
                         Click Here To Detect
                       </span>
                     </Link>
-                    
                   </div>
                 </motion.div>
               ))}
