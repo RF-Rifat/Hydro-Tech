@@ -25,9 +25,16 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
+      <head>
+        <link
+          rel="shortcut icon"
+          href="/assets/images/logo.png"
+          type="image/png"
+        />
+      </head>
       <html lang="en">
         <body className={poppins.variable}>{children}</body>
       </html>
     </ClerkProvider>
-  )
+  );
 }
