@@ -10,11 +10,6 @@ const blogPosts = [
     image: "/assets/images/carousel1.jpg",
   },
   {
-    id: 2,
-    title: "Lettuce",
-    image: "/assets/images/carousel1.jpg",
-  },
-  {
     id: 3,
     title: "Strawberry plant",
     image: "/assets/images/carousel1.jpg",
