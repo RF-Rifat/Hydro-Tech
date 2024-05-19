@@ -10,7 +10,7 @@ const blogPosts = [
     image: "/assets/images/carousel1.jpg",
   },
   {
-    id: 3,
+    id: 2,
     title: "Strawberry plant",
     image: "/assets/images/carousel1.jpg",
   },
