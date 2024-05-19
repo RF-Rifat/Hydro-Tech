@@ -9,7 +9,7 @@ export const headerLinks = [
   },
   // {
   //   label: 'My Profile',
-  //   route: '/events/create',
+  //   route: '/detect/diseases',
   // },
 ];
 

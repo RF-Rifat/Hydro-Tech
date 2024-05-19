@@ -17,12 +17,12 @@ const NavItems = () => {
           <li
             key={link.route}
             className={`${
-              isActive && 'text-primary-500'
+              isActive && "text-[#07B551] border-b-2 border-[#07B551]"
             } flex-center p-medium-16 whitespace-nowrap`}
           >
             <Link href={link.route}>{link.label}</Link>
           </li>
-        )
+        );
       })}
     </ul>
   )

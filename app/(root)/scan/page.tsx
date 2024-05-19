@@ -55,7 +55,7 @@ const ScanPage = () => {
               {blogPosts.map((post) => (
                 <motion.div
                   key={post.id}
-                  className="rounded overflow-hidden p-6 bg-slate-200 hover:bg-gray-100 transition-all duration-300"
+                  className="rounded overflow-hidden p-6 bg-gray-200 hover:bg-gray-100 transition-all duration-300"
                   variants={{
                     hidden: { opacity: 0, y: 20 },
                     visible: { opacity: 1, y: 0 },
@@ -74,24 +74,10 @@ const ScanPage = () => {
                       Detect here your {post.title}
                     </p>
                     <Link
-                      href="/"
+                      href="/detect/diseases"
                       className="relative inline-flex items-center justify-center p-2 px-4 py-1.5 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-green-500 rounded-full shadow-md group mt-2"
                     >
                       <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-green-500 group-hover:translate-x-0 ease">
-                        {/* <svg
-                          className="w-6 h-6"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          ></path>
-                        </svg> */}
                         {post.title}
                       </span>
                       <span className="absolute flex items-center justify-center w-full h-full text-green-500 transition-all duration-300 transform group-hover:translate-x-full ease">
