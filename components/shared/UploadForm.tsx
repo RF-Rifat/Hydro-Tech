@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { FileUploader } from "./FileUploader";
 
-const EventForm = () => {
+const ImgForm = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [imageUrls, setImageUrls] = useState<string[]>([]);
 
@@ -43,4 +43,4 @@ const EventForm = () => {
   );
 };
 
-export default EventForm;
+export default ImgForm;

@@ -3,16 +3,18 @@ import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 
-const blogPosts = [
+const plantData = [
   {
     id: 1,
-    title: "Tomato Plat",
+    title: "Tomato Plant",
     image: "/assets/images/carousel1.jpg",
+    slug: "tomato",
   },
   {
     id: 2,
-    title: "Strawberry plant",
-    image: "/assets/images/carousel1.jpg",
+    title: "Strawberry Plant",
+    image: "/assets/images/carousel2.jpg",
+    slug: "strawberry",
   },
 ];
 
@@ -47,7 +49,7 @@ const ScanPage = () => {
                 },
               }}
             >
-              {blogPosts.map((post) => (
+              {plantData.map((post) => (
                 <motion.div
                   key={post.id}
                   className="rounded overflow-hidden p-6 bg-gray-200 hover:bg-gray-100 transition-all duration-300"
@@ -69,7 +71,7 @@ const ScanPage = () => {
                       Detect here your {post.title}
                     </p>
                     <Link
-                      href="/detect/diseases"
+                      href={`/scan/${post.slug}`}
                       className="relative inline-flex items-center justify-center p-2 px-4 py-1.5 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-green-500 rounded-full shadow-md group mt-2"
                     >
                       <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-green-500 group-hover:translate-x-0 ease">
