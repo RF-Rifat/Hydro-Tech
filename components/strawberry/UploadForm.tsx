@@ -3,8 +3,10 @@
 import { useState } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
-import { FileUploader } from "./FileUploader";
-import Modal from "./PlantDiseaseModal";
+import { FileUploader } from "../shared/FileUploader";
+import Modal from "../shared/PlantDiseaseModal";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 interface PlantCondition {
   status: boolean;
@@ -29,14 +31,17 @@ const ImgForm: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    if (!image) return;
+    if (!image) {
+      toast.error("No image selected. Please upload an image.");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("image", image);
 
     try {
       const response = await axios.post(
-        process.env.NEXT_PUBLIC_STRAWBERRY_API_URL as string,
+        "http://localhost:5172/strawberry-plant-disease",
         formData,
         {
           headers: {
@@ -57,7 +62,15 @@ const ImgForm: React.FC = () => {
       setIsModalOpen(true);
     } catch (error) {
       console.error("Error uploading image", error);
+      toast.error("Error uploading image. Please try again.");
     }
+  };
+
+  const handleCloseModal = () => {
+    // Reset the image and plant condition when the modal is closed
+    setImage(null);
+    setPlantCondition({ status: false });
+    setIsModalOpen(false);
   };
 
   return (
@@ -97,10 +110,12 @@ const ImgForm: React.FC = () => {
       </Button>
       <Modal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={handleCloseModal}
         plantCondition={plantCondition}
         image={image}
       />
+      {/* Toast Container for notifications */}
+      <ToastContainer />
     </div>
   );
 };

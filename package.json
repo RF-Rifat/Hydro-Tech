@@ -1,5 +1,5 @@
 {
-  "name": "hydro-tech",
+  "name": "Leaf-guard",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -35,6 +35,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.49.0",
     "react-icons": "^5.2.1",
+    "react-toastify": "^10.0.5",
     "stripe": "^14.8.0",
     "svix": "^1.15.0",
     "tailwind-merge": "^2.1.0",

@@ -17,7 +17,7 @@ const Header = () => {
             alt="logo"
             className="h-10 w-10"
           />
-          <h2 className="font-semibold">HydroTech</h2>
+          <h2 className="font-semibold">LeafGuard</h2>
         </Link>
 
         <SignedIn>

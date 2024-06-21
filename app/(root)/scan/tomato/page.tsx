@@ -1,5 +1,4 @@
-import ImgForm from "@/components/shared/UploadForm";
-
+import ImgForm from "@/components/tomato/UploadForm";
 const upLoadImg = () => {
   return (
     <>

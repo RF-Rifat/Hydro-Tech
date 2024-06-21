@@ -1,4 +1,4 @@
-import ImgForm from "@/components/shared/UploadForm";
+import ImgForm from "@/components/strawberry/UploadForm";
 
 const upLoadImg = () => {
   return (

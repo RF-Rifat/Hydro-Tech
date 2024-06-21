@@ -11,8 +11,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Hydro-Tech",
-  description: "Hydro-Tech is a platform for helping you keep your garden healthy and thriving.",
+  title: "Leaf-guard",
+  description: "Leaf-guard is a platform for helping you keep your garden healthy and thriving.",
   icons: {
     icon: "/assets/images/logo.png",
   },
