@@ -75,15 +75,13 @@ const ImgForm: React.FC = () => {
 
   const handleKeyPress = (event: KeyboardEvent) => {
     console.log(`Key pressed: ${event.key}`);
-    if (
-      event.key === "ArrowUp" ||
-      event.key === "ArrowDown" ||
-      event.key === "ArrowLeft" ||
-      event.key === "ArrowRight"
-    ) {
+
+    // Use 'A', 'S', 'D', 'F' keys for the action instead of arrow keys
+    if (["A", "S", "D", "F"].includes(event.key.toUpperCase())) {
       toast.error("This is not an appropriate action for the image.");
       console.log("This is not an appropriate action for the image.");
     }
+
     if (event.key === "Enter") {
       handleSubmit();
     }
