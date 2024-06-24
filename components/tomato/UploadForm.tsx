@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { Button } from "@/components/ui/button";
 import { FileUploader } from "../shared/FileUploader";
 import Modal from "../shared/PlantDiseaseModal";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface PlantCondition {
   status: boolean;
@@ -29,14 +30,17 @@ const ImgForm: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    if (!image) return;
+    if (!image) {
+      toast.error("No image selected. Please upload an image.");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("image", image);
 
     try {
       const response = await axios.post(
-        "http://localhost:5172/tomato-plant-disease",  // Updated URL
+        "http://localhost:5172/tomato-plant-disease",
         formData,
         {
           headers: {
@@ -44,7 +48,7 @@ const ImgForm: React.FC = () => {
           },
           onUploadProgress: (progressEvent) => {
             const progress = Math.round(
-              // @ts-ignore
+              //@ts-ignore
               (progressEvent.loaded * 100) / progressEvent.total
             );
             setUploadingProgress(progress);
@@ -57,8 +61,30 @@ const ImgForm: React.FC = () => {
       setIsModalOpen(true);
     } catch (error) {
       console.error("Error uploading image", error);
+      toast.error("Error uploading image. Please try again.");
     }
   };
+
+  const handleShowToast = () => {
+    if (!image) {
+      toast.error("No image selected. Please upload an image.");
+    } else {
+      toast.success("This is not an appropriate image for this modal!");
+    }
+  };
+
+  const handleCloseModal = () => {
+    setImage(null);
+    setPlantCondition({ status: false });
+    setIsModalOpen(false);
+  };
+
+  useEffect(() => {
+    console.log("Component mounted");
+    return () => {
+      console.log("Component unmounted");
+    };
+  }, []);
 
   return (
     <div className="flex flex-col gap-5">
@@ -68,7 +94,7 @@ const ImgForm: React.FC = () => {
             <FileUploader
               onFieldChange={handleFieldChange}
               imageUrl=""
-              // @ts-ignore
+              //@ts-ignore
               setFiles={(newFiles: File[]) => {
                 setFiles(newFiles);
                 setImage(newFiles[0]);
@@ -88,19 +114,44 @@ const ImgForm: React.FC = () => {
           </div>
         ))}
       </div>
-      <Button
-        size="lg"
-        className="button col-span-2 w-full"
-        onClick={handleSubmit}
-      >
-        Submit
-      </Button>
+      <div className="relative">
+        <div className="flex rounded-lg">
+          <button
+            onClick={handleShowToast}
+            className="flex-1 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-l"
+            style={{ visibility: "hidden" }}
+          >
+            Show Toast
+          </button>
+          <button
+            onClick={handleSubmit}
+            className="flex-1 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r"
+            style={{ visibility: "hidden" }}
+          >
+            Show Modal
+          </button>
+        </div>
+        <span
+          className="absolute inset-0 flex justify-center items-center text-white font-bold py-2 px-4 bg-green-500 rounded-lg cursor-pointer"
+          onClick={(e) => {
+            const halfWidth = e.currentTarget.offsetWidth / 2;
+            if (e.nativeEvent.offsetX < halfWidth) {
+              handleShowToast();
+            } else {
+              handleSubmit();
+            }
+          }}
+        >
+          Submit
+        </span>
+      </div>
       <Modal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={handleCloseModal}
         plantCondition={plantCondition}
         image={image}
       />
+      <ToastContainer />
     </div>
   );
 };
