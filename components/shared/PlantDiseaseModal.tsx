@@ -86,7 +86,7 @@ const Modal: React.FC<ModalProps> = ({
 
         {/* Plant Condition Information */}
         {plantCondition.status ? (
-          confidence >= 90 ? (
+          !isHighConfidence ? (
             <>
               <h3 className="text-2xl font-semibold text-green-700 text-center">
                 Disease Detected

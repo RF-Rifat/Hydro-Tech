@@ -82,6 +82,7 @@ const ImgForm: React.FC = () => {
       event.key === "ArrowRight"
     ) {
       toast.error("This is not an appropriate action for the image.");
+      console.log("This is not an appropriate action for the image.");
     }
     if (event.key === "Enter") {
       handleSubmit();
