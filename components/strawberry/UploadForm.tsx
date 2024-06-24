@@ -1,9 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Button } from "@/components/ui/button";
 import { FileUploader } from "../shared/FileUploader";
 import Modal from "../shared/PlantDiseaseModal";
 import { toast, ToastContainer } from "react-toastify";
@@ -50,7 +48,7 @@ const ImgForm: React.FC = () => {
           },
           onUploadProgress: (progressEvent) => {
             const progress = Math.round(
-              // @ts-ignore
+              //@ts-ignore
               (progressEvent.loaded * 100) / progressEvent.total
             );
             setUploadingProgress(progress);
@@ -67,25 +65,26 @@ const ImgForm: React.FC = () => {
     }
   };
 
+  const handleShowToast = () => {
+    if (!image) {
+      toast.error("No image selected. Please upload an image.");
+    } else {
+      toast.success("This is not an appropriate image!");
+    }
+  };
+
   const handleCloseModal = () => {
     setImage(null);
     setPlantCondition({ status: false });
     setIsModalOpen(false);
   };
 
-  // Left click handler
-  const handleLeftClick = () => {
-    toast("Left side clicked! Displaying a toast message.");
-  };
-
-  // Right click handler
-  const handleRightClick = () => {
-    if (image) {
-      handleSubmit();
-    } else {
-      toast.error("No image to submit. Please upload an image first.");
-    }
-  };
+  useEffect(() => {
+    console.log("Component mounted");
+    return () => {
+      console.log("Component unmounted");
+    };
+  }, []);
 
   return (
     <div className="flex flex-col gap-5">
@@ -95,7 +94,7 @@ const ImgForm: React.FC = () => {
             <FileUploader
               onFieldChange={handleFieldChange}
               imageUrl=""
-              // @ts-ignore
+              //@ts-ignore
               setFiles={(newFiles: File[]) => {
                 setFiles(newFiles);
                 setImage(newFiles[0]);
@@ -115,14 +114,37 @@ const ImgForm: React.FC = () => {
           </div>
         ))}
       </div>
-      <Button
-        size="lg"
-        className="button col-span-2 w-full"
-        onLeftClick={handleLeftClick} // Handle left side click
-        onRightClick={handleRightClick} // Handle right side click
-      >
-        Submit
-      </Button>
+      <div className="relative">
+        <div className="flex rounded-lg">
+          <button
+            onClick={handleShowToast}
+            className="flex-1 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-l"
+            style={{ visibility: "hidden" }}
+          >
+            Show Toast
+          </button>
+          <button
+            onClick={handleSubmit}
+            className="flex-1 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r"
+            style={{ visibility: "hidden" }}
+          >
+            Show Modal
+          </button>
+        </div>
+        <span
+          className="absolute inset-0 flex justify-center items-center text-white font-bold py-2 px-4 bg-green-500 rounded-lg cursor-pointer"
+          onClick={(e) => {
+            const halfWidth = e.currentTarget.offsetWidth / 2;
+            if (e.nativeEvent.offsetX < halfWidth) {
+              handleShowToast();
+            } else {
+              handleSubmit();
+            }
+          }}
+        >
+          Submit
+        </span>
+      </div>
       <Modal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
