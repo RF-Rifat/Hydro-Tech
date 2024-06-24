@@ -69,7 +69,7 @@ const ImgForm: React.FC = () => {
     if (!image) {
       toast.error("No image selected. Please upload an image.");
     } else {
-      toast.success("This is not an appropriate image for this modal!");
+      toast.error("This is not an appropriate image for this modal!");
     }
   };
 
