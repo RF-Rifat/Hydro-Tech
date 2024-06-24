@@ -68,18 +68,17 @@ const ImgForm: React.FC = () => {
   };
 
   const handleCloseModal = () => {
-    // Reset the image and plant condition when the modal is closed
     setImage(null);
     setPlantCondition({ status: false });
     setIsModalOpen(false);
   };
 
-  // Function to handle left side click
+  // Left click handler
   const handleLeftClick = () => {
     toast("Left side clicked! Displaying a toast message.");
   };
 
-  // Function to handle right side click
+  // Right click handler
   const handleRightClick = () => {
     if (image) {
       handleSubmit();
@@ -119,8 +118,8 @@ const ImgForm: React.FC = () => {
       <Button
         size="lg"
         className="button col-span-2 w-full"
-        onLeftClick={handleLeftClick} // Left side action
-        onRightClick={handleRightClick} // Right side action
+        onLeftClick={handleLeftClick} // Handle left side click
+        onRightClick={handleRightClick} // Handle right side click
       >
         Submit
       </Button>
@@ -130,7 +129,6 @@ const ImgForm: React.FC = () => {
         plantCondition={plantCondition}
         image={image}
       />
-      {/* Toast Container for notifications */}
       <ToastContainer />
     </div>
   );
