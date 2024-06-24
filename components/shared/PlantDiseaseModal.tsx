@@ -32,8 +32,12 @@ const Modal: React.FC<ModalProps> = ({
 
   if (!isOpen) return null;
 
+  // Logging the plantCondition and confidence percentage
+  console.log("Plant Condition:", plantCondition);
   const confidence = plantCondition.data?.confidence_percentage ?? 0;
-  const isHighConfidence = confidence >= 90; // Use >= to handle exactly 90
+  console.log("Confidence Percentage:", confidence);
+  const isHighConfidence = confidence >= 90;
+  console.log("Is High Confidence:", isHighConfidence);
 
   return (
     <motion.div
