@@ -31,8 +31,9 @@ const Modal: React.FC<ModalProps> = ({
   }, [onClose]);
 
   if (!isOpen) return null;
+
   const confidence = plantCondition.data?.confidence_percentage ?? 0;
-  const isHighConfidence = confidence >= 70;
+  const isHighConfidence = confidence >= 90; // Use >= to handle exactly 90
 
   return (
     <motion.div
@@ -46,7 +47,10 @@ const Modal: React.FC<ModalProps> = ({
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         className="relative bg-gradient-to-r from-green-100 to-blue-200 rounded-xl p-8 shadow-2xl max-w-lg w-full transform transition-all duration-300"
-        style={{ border: '2px solid #84a98c', boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)' }}
+        style={{
+          border: "2px solid #84a98c",
+          boxShadow: "0 10px 25px rgba(0, 0, 0, 0.15)",
+        }}
       >
         {/* Close Button */}
         <button
@@ -93,7 +97,7 @@ const Modal: React.FC<ModalProps> = ({
               </h3>
               <p className="py-4 text-center text-green-600">
                 <u>
-                  <b>{confidence}</b>
+                  <b>{confidence}%</b>
                 </u>
               </p>
             </>
