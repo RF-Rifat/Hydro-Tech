@@ -31,9 +31,8 @@ const Modal: React.FC<ModalProps> = ({
   }, [onClose]);
 
   if (!isOpen) return null;
-console.log(plantCondition)
   const confidence = plantCondition.data?.confidence_percentage ?? 0;
-  const isHighConfidence = confidence >= 90;
+  const isHighConfidence = confidence >= 70;
 
   return (
     <motion.div
@@ -79,7 +78,7 @@ console.log(plantCondition)
 
         {/* Plant Condition Information */}
         {plantCondition.status ? (
-          !isHighConfidence ? (
+          isHighConfidence ? (
             <>
               <h3 className="text-2xl font-semibold text-green-700 text-center">
                 Disease Detected

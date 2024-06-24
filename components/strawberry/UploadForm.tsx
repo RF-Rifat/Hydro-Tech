@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { FileUploader } from "../shared/FileUploader";
 import Modal from "../shared/PlantDiseaseModal";
 import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 interface PlantCondition {
   status: boolean;
@@ -72,6 +72,28 @@ const ImgForm: React.FC = () => {
     setPlantCondition({ status: false });
     setIsModalOpen(false);
   };
+
+  const handleKeyPress = (event: KeyboardEvent) => {
+    console.log(`Key pressed: ${event.key}`);
+    if (
+      event.key === "ArrowUp" ||
+      event.key === "ArrowDown" ||
+      event.key === "ArrowLeft" ||
+      event.key === "ArrowRight"
+    ) {
+      toast.error("This is not an appropriate action for the image.");
+    }
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []); // Run only once
 
   return (
     <div className="flex flex-col gap-5">
