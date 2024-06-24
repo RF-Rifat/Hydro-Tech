@@ -88,8 +88,10 @@ const ImgForm: React.FC = () => {
   };
 
   useEffect(() => {
+    console.log("Adding keydown event listener");
     window.addEventListener("keydown", handleKeyPress);
     return () => {
+      console.log("Removing keydown event listener");
       window.removeEventListener("keydown", handleKeyPress);
     };
   }, []); // Run only once
