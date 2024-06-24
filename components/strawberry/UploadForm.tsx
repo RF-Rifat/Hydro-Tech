@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
@@ -73,28 +74,19 @@ const ImgForm: React.FC = () => {
     setIsModalOpen(false);
   };
 
-  const handleKeyPress = (event: KeyboardEvent) => {
-    console.log(`Key pressed: ${event.key}`);
-
-    // Use 'A', 'S', 'D', 'F' keys for the action instead of arrow keys
-    if (["A", "S", "D", "F"].includes(event.key.toUpperCase())) {
-      toast.error("This is not an appropriate action for the image.");
-      console.log("This is not an appropriate action for the image.");
-    }
-
-    if (event.key === "Enter") {
-      handleSubmit();
-    }
+  // Function to handle left side click
+  const handleLeftClick = () => {
+    toast("Left side clicked! Displaying a toast message.");
   };
 
-  useEffect(() => {
-    console.log("Adding keydown event listener");
-    window.addEventListener("keydown", handleKeyPress);
-    return () => {
-      console.log("Removing keydown event listener");
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, []); // Run only once
+  // Function to handle right side click
+  const handleRightClick = () => {
+    if (image) {
+      handleSubmit();
+    } else {
+      toast.error("No image to submit. Please upload an image first.");
+    }
+  };
 
   return (
     <div className="flex flex-col gap-5">
@@ -127,7 +119,8 @@ const ImgForm: React.FC = () => {
       <Button
         size="lg"
         className="button col-span-2 w-full"
-        onClick={handleSubmit}
+        onLeftClick={handleLeftClick} // Left side action
+        onRightClick={handleRightClick} // Right side action
       >
         Submit
       </Button>
